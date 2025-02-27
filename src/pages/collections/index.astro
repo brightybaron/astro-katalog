@@ -1,0 +1,29 @@
+---
+import Card from "@components/Card.astro";
+import TitleHeading from "@components/TitleHeading.astro";
+import Layout from "@layouts/Layout.astro";
+
+const content = await fetch(new URL("/data.json", Astro.url)).then((res) => {
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+  return res.json();
+});
+
+const datas = content;
+
+const title = "Collections";
+---
+
+<Layout pageTitle={title}>
+  <div class="mx-auto">
+    <TitleHeading title={title} />
+  </div>
+  <div class="w-full mx-auto grid sm:grid-cols-4 grid-cols-2 gap-4 mt-8 pb-8">
+    {
+      datas.map((item: any) => (
+        <Card {...item} urutan={datas.indexOf(item) + 1} />
+      ))
+    }
+  </div>
+</Layout>

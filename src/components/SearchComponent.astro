@@ -1,0 +1,141 @@
+<!-- Tombol Search yang hanya menampilkan icon -->
+<button
+  id="search-btn"
+  aria-label="Search"
+  class="focus:ring-4 focus-visible:outline-none focus:ring-gray-600 font-medium rounded-full text-sm p-2 sm:mr-0 mr-4"
+>
+  <svg
+    class="w-5 h-5 text-slate-500"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 20 20"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"></path>
+  </svg>
+</button>
+
+<!-- Modal Fullscreen dengan background hitam opacity 50% -->
+<div
+  id="search-modal"
+  class="fixed inset-0 bg-black/75 z-50 items-center justify-center hidden"
+>
+  <div class="relative w-full max-w-2xl p-4">
+    <form method="GET" action="/search" class="form w-full mx-auto">
+      <label for="modal-search" class="sr-only">Search</label>
+      <div class="relative">
+        <input
+          type="text"
+          id="modal-search"
+          name="q"
+          class="block w-full px-5 py-3 text-base focus:ring-gray-400 focus:border-gray-400 bg-white border border-gray-200 placeholder-slate-400 text-slate-800 rounded-full"
+          placeholder="Search"
+          required
+          autofocus
+        />
+        <button
+          type="submit"
+          aria-label="Search"
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 focus:ring-4 focus-visible:outline-none focus:ring-gray-600 font-medium rounded-full text-sm p-2"
+        >
+          <svg
+            class="w-5 h-5 text-slate-500"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"></path>
+          </svg>
+        </button>
+      </div>
+    </form>
+    <!-- Tombol Close -->
+    <button
+      id="close-modal"
+      class="absolute top-5 right-5 text-white hover:text-gray-300"
+      aria-label="Close search"
+    >
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // Mendapatkan referensi elemen
+  const searchBtn = document.getElementById("search-btn");
+  const searchModal = document.getElementById("search-modal");
+  const closeModal = document.getElementById("close-modal");
+  const modalForm = searchModal?.querySelector("form");
+  const modalInput = document.getElementById("modal-search");
+
+  // Membuka modal saat tombol search diklik
+  searchBtn?.addEventListener("click", () => {
+    searchModal?.classList.remove("hidden");
+    searchModal?.classList.add("flex");
+    document.body.style.overflow = "hidden"; // Mencegah scrolling
+    // Focus pada input setelah modal terbuka
+    setTimeout(() => {
+      modalInput?.focus();
+    }, 100);
+  });
+
+  // Menutup modal saat tombol close diklik
+  closeModal?.addEventListener("click", () => {
+    searchModal?.classList.add("hidden");
+    searchModal?.classList.remove("flex");
+    document.body.style.overflow = ""; // Mengembalikan scrolling
+  });
+
+  // Menutup modal saat mengklik background (area di luar form)
+  searchModal?.addEventListener("click", (event) => {
+    if (event.target === searchModal) {
+      searchModal.classList.add("hidden");
+      searchModal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+  });
+
+  // Menangani form submission
+  modalForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(modalForm);
+    const searchTerm = formData.get("q")?.toString();
+    if (!searchTerm || searchTerm.length === 0) return;
+    const url = new URL("/search", window.location.origin);
+    url.searchParams.set("q", searchTerm);
+    window.location.assign(url.toString());
+  });
+
+  // Menutup modal dengan tombol Escape
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !searchModal?.classList.contains("hidden")) {
+      searchModal?.classList.add("hidden");
+      searchModal?.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+  });
+</script>

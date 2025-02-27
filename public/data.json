@@ -1,0 +1,90 @@
+[
+  {
+    "title": "Sofa",
+    "slug": "sofa",
+    "picture": [
+      "/images/furnitur-1.jpg",
+      "/images/furnitur-2.jpg",
+      "/images/furnitur-3.jpg",
+      "/images/furnitur-5.jpg"
+    ],
+    "deskripsi": [
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      },
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      }
+    ],
+    "harga": "1.000.000"
+  },
+  {
+    "title": "Sofa Set",
+    "slug": "sofa-set",
+    "picture": [
+      "/images/furnitur-1.jpg",
+      "/images/furnitur-2.jpg",
+      "/images/furnitur-3.jpg",
+      "/images/furnitur-4.jpg",
+      "/images/furnitur-5.jpg"
+    ],
+    "deskripsi": [
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      }
+    ],
+
+    "harga": "1.000.000"
+  },
+  {
+    "title": "Kursi",
+    "slug": "kursi",
+    "picture": [
+      "/images/furnitur-1.jpg",
+      "/images/furnitur-2.jpg",
+      "/images/furnitur-3.jpg",
+      "/images/furnitur-4.jpg",
+      "/images/furnitur-5.jpg"
+    ],
+    "deskripsi": [
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      }
+    ],
+    "harga": "1.000.000"
+  },
+  {
+    "title": "Meja Set",
+    "slug": "meja-set",
+    "picture": [
+      "/images/furnitur-1.jpg",
+      "/images/furnitur-2.jpg",
+      "/images/furnitur-3.jpg",
+      "/images/furnitur-4.jpg",
+      "/images/furnitur-5.jpg"
+    ],
+    "deskripsi": [
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      }
+    ],
+    "harga": "1.000.000"
+  },
+  {
+    "title": "Chair",
+    "slug": "chair",
+    "picture": [
+      "/images/furnitur-1.jpg",
+      "/images/furnitur-2.jpg",
+      "/images/furnitur-3.jpg",
+      "/images/furnitur-4.jpg",
+      "/images/furnitur-5.jpg"
+    ],
+    "deskripsi": [
+      {
+        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae."
+      }
+    ],
+    "harga": "1.000.000"
+  }
+]

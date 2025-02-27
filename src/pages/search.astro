@@ -1,0 +1,61 @@
+---
+import Card from "@components/Card.astro";
+import Layout from "@layouts/Layout.astro";
+
+async function getPost(searchQuery: any) {
+  try {
+    const response = await fetch("http://localhost:4321/data.json");
+    const data = await response.json();
+
+    // Map to extract necessary fields
+    const processedData = data.map((item: any) => ({
+      title: item.title,
+      slug: item.slug,
+      picture: item.picture[0],
+      deskripsi: item.deskripsi,
+      harga: item.harga,
+    }));
+
+    // Filter results based on search query
+    return searchQuery
+      ? processedData.filter((item: any) =>
+          item.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      : [];
+  } catch (error) {
+    console.error("Failed to fetch data:", error);
+    return [];
+  }
+}
+
+const url = new URL(Astro.request.url);
+const searchQuery = url.searchParams.get("q") || "";
+const searchResults = await getPost(searchQuery);
+// console.log(searchQuery);
+// console.log(searchResults);
+// console.log(url);
+
+const pageTitle = `Search Results for "${searchQuery}"`;
+---
+
+<Layout pageTitle={`Search for ${searchQuery}`}>
+  <h1 class="text-2xl font-semibold text-slate-700">
+    {pageTitle || "Search Results"}
+  </h1>
+  <div class="mt-8 grid sm:grid-cols-4 grid-cols-2 gap-4">
+    {
+      searchQuery ? (
+        searchResults.length > 0 ? (
+          // Display search results
+          searchResults.map((result: any) => <Card {...result} />)
+        ) : (
+          <div class="text-slate-600">
+            No results found for "{searchQuery}".
+          </div>
+        )
+      ) : (
+        <div class="text-slate-600">Please enter a search term.</div>
+      )
+    }
+  </div>
+</Layout>

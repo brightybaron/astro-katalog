@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-noto-sans-jp: "Noto Sans JP", sans-serif;
+  --animate-slide-down: slideDown 1.5s ease-in-out infinite;
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+  }
+}

@@ -4,7 +4,9 @@ import Layout from "@layouts/Layout.astro";
 
 async function getPost(searchQuery: any) {
   try {
-    const response = await fetch("http://localhost:4321/data.json");
+    const response = await fetch(
+      new URL(`/astro-katalog/data.json`, Astro.url)
+    );
     const data = await response.json();
 
     // Map to extract necessary fields

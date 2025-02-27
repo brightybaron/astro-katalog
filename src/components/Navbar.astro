@@ -6,15 +6,15 @@ import Search from "@components/SearchComponent.astro";
 const listmenu = [
   {
     page: "home",
-    path: "/",
+    path: "/astro-katalog",
   },
   {
     page: "collections",
-    path: "/collections",
+    path: "/astro-katalog/collections",
   },
   {
     page: "studio",
-    path: "/studio",
+    path: "/astro-katalog/studio",
   },
 ];
 ---
@@ -23,9 +23,9 @@ const listmenu = [
   <div class="container md:px-12 px-4">
     <div class="flex items-center justify-between h-16">
       <div class="flex-shrink-0">
-        <a href="/" class="flex items-center gap-x-2">
+        <a href="/astro-katalog" class="flex items-center gap-x-2">
           <Image
-            src="/logo-dummy.png"
+            src="/astro-katalog/logo-dummy.png"
             alt="logo"
             width={40}
             height={40}
@@ -85,9 +85,12 @@ const listmenu = [
   class="transition-transform duration-300 ease-linear bg-gray-200 bg-gradient-to-r from-gray-200 to-gray-400 fixed top-0 left-0 w-10/12 flex flex-col p-6 sm:hidden gap-y-6 z-[1035] -translate-x-[100%] h-screen"
 >
   <div class="flex justify-between items-center">
-    <a href="/" class="flex items-center align-middle font-bold text-xl">
+    <a
+      href="/astro-katalog"
+      class="flex items-center align-middle font-bold text-xl"
+    >
       <img
-        src="/logo-dummy.png"
+        src="/astro-katalog/logo-dummy.png"
         alt="logo"
         class="h-10 w-10 inline-block mx-2 p-0.5 bg-white rounded-full"
       />

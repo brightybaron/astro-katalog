@@ -70,8 +70,8 @@ const LightboxGaleri = ({ images, title }: LightboxProps) => {
         <div key={index} className="max-h-full aspect-square mx-auto">
           <img
             className="block w-full h-full aspect-square object-cover rounded mx-auto transition-all duration-200 hover:opacity-75 cursor-pointer"
-            src={`${image.url}`}
-            alt={`${title} ${index + 1}`}
+            src={`/astro-katalog/${image.url}`}
+            alt={`/astro-katalog/${title} ${index + 1}`}
             height={400}
             width={400}
             loading="lazy"
@@ -92,8 +92,8 @@ const LightboxGaleri = ({ images, title }: LightboxProps) => {
           >
             <img
               className="w-full h-screen object-contain"
-              src={`${images[currentIndex].url}`}
-              alt={`${title} ${currentIndex + 1}`}
+              src={`/astro-katalog/${images[currentIndex].url}`}
+              alt={`/astro-katalog/${title} ${currentIndex + 1}`}
             />
           </div>
           <div className="absolute w-full h-screen">

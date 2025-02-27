@@ -3,7 +3,9 @@ import Card from "@components/Card.astro";
 import TitleHeading from "@components/TitleHeading.astro";
 import Layout from "@layouts/Layout.astro";
 
-const content = await fetch(new URL("/data.json", Astro.url)).then((res) => {
+const content = await fetch(
+  new URL("/astro-katalog/data.json", Astro.url)
+).then((res) => {
   if (!res.ok) {
     throw new Error(`HTTP error! status: ${res.status}`);
   }

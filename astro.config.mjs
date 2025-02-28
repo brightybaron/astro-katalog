@@ -14,7 +14,5 @@ export default defineConfig({
 
   integrations: [react()],
   output: "server",
-  site: "https://brightybaron.github.io",
-  base: "/astro-katalog",
   adapter: vercel(),
 });

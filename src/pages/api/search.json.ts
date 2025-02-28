@@ -1,7 +1,5 @@
 async function getPost() {
-  const response = await fetch(
-    "https://brightybaron.github.io/astro-katalog/data.json"
-  );
+  const response = await fetch("http://localhost:4321/data.json");
   const data = await response.json();
 
   return data.map((item: any) => ({

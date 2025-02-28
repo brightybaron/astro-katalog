@@ -4,9 +4,9 @@ import TitleHeading from "@components/TitleHeading.astro";
 import Layout from "@layouts/Layout.astro";
 
 export async function getStaticPaths(): Promise<any> {
-  const datas = await fetch(
-    new URL(`/astro-katalog/api/search.json`, Astro.url)
-  ).then((res) => res.json());
+  const datas = await fetch(new URL(`/api/search.json`, Astro.url)).then(
+    (res) => res.json()
+  );
 
   return datas.map((data: any) => ({
     params: { slug: data.slug },
@@ -16,14 +16,14 @@ export async function getStaticPaths(): Promise<any> {
 
 const { slug } = Astro.params;
 
-const data = await fetch(new URL(`/astro-katalog/api/search.json`)).then(
-  (res) => res.json()
+const data = await fetch(new URL(`/api/search.json`, Astro.url)).then((res) =>
+  res.json()
 );
 
 const myData = data.find((entry: any) => entry.slug === slug);
 
 if (!myData) {
-  return Astro.redirect("/astro-katalog/404");
+  return Astro.redirect("/404");
 }
 
 const content: any = myData;

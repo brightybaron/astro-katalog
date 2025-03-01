@@ -1,6 +1,9 @@
 ---
 import "@styles/global.css";
 import Navbar from "@components/Navbar.astro";
+import { Image } from "astro:assets";
+import toped from "@assets/toped-icon.png";
+import shopee from "@assets/shopee-icon.png";
 
 const { pageTitle } = Astro.props;
 
@@ -14,9 +17,9 @@ interface Props {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/logo-dummy.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/*" href="/logo-dummy.png" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
 
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle} | Moluska</title>
@@ -136,6 +139,18 @@ interface Props {
               </a>
             </li>
           </ul>
+          <div class="mt-4 w-full flex justify-evenly">
+            <div class="w-12 h-12 hover:scale-105 transition-all duration-200">
+              <a href="https://www.tokopedia.com/" target="_blank">
+                <Image src={toped} alt="tokopedia icon" />
+              </a>
+            </div>
+            <div class="w-12 h-12 hover:scale-105 transition-all duration-200">
+              <a href="https://shopee.co.id/" target="_blank">
+                <Image src={shopee} alt="tokopedia icon" />
+              </a>
+            </div>
+          </div>
         </div>
         <div class="col-span-1 text-slate-500 text-sm px-8">
           <div class="flex flex-col space-y-2">

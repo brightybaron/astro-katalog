@@ -16,9 +16,17 @@ const listmenu = [
     path: "/studio",
   },
 ];
+
+const pathname = Astro.url.pathname;
 ---
 
-<nav class="fixed top-0 w-full transition-all duration-300 z-[5]" id="navbar">
+<nav
+  class:list={[
+    "fixed top-0 w-full transition-all duration-300 z-[5]",
+    pathname === "/" ? "text-white" : "text-slate-800 shadow-md",
+  ]}
+  id="navbar"
+>
   <div class="max-w-7xl mx-auto md:px-12 px-4">
     <div class="flex items-center justify-between h-16">
       <div class="flex-shrink-0">
@@ -29,12 +37,12 @@ const listmenu = [
             width={40}
             height={40}
             loading={"lazy"}
-            class="h-10 w-10 inline-block p-1 rounded-full bg-white border-2"
+            class="h-10 w-10 inline-block p-1 rounded-full bg-white border"
           />
 
           <span
-            class="text-slate-600 font-bold text-xl after:content-[''] after:block after:border-b-2 after:transition-all after:duration-300 after:scale-x-0 after:origin-center hover:after:scale-x-100"
-            >Moluska</span
+            class="font-bold text-xl after:content-[''] after:block after:border-b-2 after:transition-all after:duration-300 after:scale-x-0 after:origin-center hover:after:scale-x-100"
+            id="navTitle">Molvska</span
           >
         </a>
       </div>
@@ -45,7 +53,7 @@ const listmenu = [
               listmenu.map((item) => (
                 <a
                   href={item.path}
-                  class="uppercase font-semibold text-white after:content-[''] after:block after:border-b-2 after:transition-all after:duration-300 after:scale-x-0 after:origin-center hover:after:scale-x-100 item-menu"
+                  class="uppercase font-semibold after:content-[''] after:block after:border-b-2 after:transition-all after:duration-300 after:scale-x-0 after:origin-center hover:after:scale-x-100 item-menu"
                 >
                   {item.page}
                 </a>
@@ -56,10 +64,7 @@ const listmenu = [
         </div>
       </div>
       <div class="md:hidden">
-        <button
-          id="toggleButton"
-          class="block lg:hidden text-slate-700 focus:outline-none"
-        >
+        <button id="toggleButton" class="block md:hidden focus:outline-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -92,7 +97,7 @@ const listmenu = [
         alt="logo"
         class="h-10 w-10 inline-block mx-2 p-0.5 bg-white rounded-full"
       />
-      Moluska
+      Molvska
     </a>
   </div>
   {
@@ -115,6 +120,7 @@ const listmenu = [
   const itemMenu = document.querySelectorAll(
     ".item-menu"
   ) as NodeListOf<HTMLElement>;
+  const navTitle = document.querySelector("#navTitle") as HTMLElement;
 
   let isMenuOpen = false;
 
@@ -135,30 +141,16 @@ const listmenu = [
     console.error("Toggle button, offcanvas, or menu icon not found.");
   }
 
-  // if (navbar) {
-  //   window.addEventListener("scroll", () => {
-  //     const scrollPosition = window.scrollY > 20;
-  //     navbar.classList.toggle("bg-white", scrollPosition);
-  //     itemMenu.forEach((item) =>
-  //       item.classList.toggle("text-slate-600", scrollPosition)
-  //     );
-  //   });
-  // }
-
-  window.addEventListener("scroll", () => {
-    const scrollPosition = window.scrollY > 20;
-    const pathname = window.location.pathname;
-
-    if (scrollPosition && pathname === "/") {
-      navbar.classList.add("bg-white");
-      itemMenu.forEach((item) => item.classList.add("text-slate-600"));
-      itemMenu.forEach((item) => item.classList.remove("text-white"));
-    } else {
-      navbar.classList.remove("bg-white");
-      itemMenu.forEach((item) => item.classList.remove("text-slate-600"));
-      itemMenu.forEach((item) => item.classList.add("text-white"));
-    }
-  });
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY > 80;
+      navbar.classList.toggle("bg-white", scrollPosition);
+      itemMenu.forEach((item) =>
+        item.classList.toggle("text-slate-800", scrollPosition)
+      );
+      navTitle.classList.toggle("text-slate-800", scrollPosition);
+    });
+  }
 
   const setActive = () => {
     const currentPath = window.location.pathname;
